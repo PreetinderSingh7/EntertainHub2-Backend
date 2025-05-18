@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
      console.log(req.body)
   try {
     // Clear any existing token cookie
-    res.clearCookie('token');
+    // res.clearCookie('token');
 
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: 'Invalid credentials' });
@@ -39,18 +39,18 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: '1d' }
-    );
+    // const token = jwt.sign(
+    //   { id: user._id, email: user.email },
+    //   JWT_SECRET,
+    //   { expiresIn: '1d' }
+    // );
 
-    res.cookie('token', token, {
-      httpOnly: false, // Prevents access from client-side JS
-      secure: false, // Use secure cookies in production
-      maxAge: 24 * 60 * 60 * 1000, // 1 day
-      sameSite: 'lax' // CSRF protection
-    });
+    // res.cookie('token', token, {
+    //   httpOnly: false, // Prevents access from client-side JS
+    //   secure: false, // Use secure cookies in production
+    //   maxAge: 24 * 60 * 60 * 1000, // 1 day
+    //   sameSite: 'lax' // CSRF protection
+    // });
 
     res.json({ message: 'Login successful' });
   } catch (err) {
@@ -60,10 +60,5 @@ exports.login = async (req, res) => {
 
 // Optional: Logout Controller
 exports.logout = (req, res) => {
-  res.clearCookie('token',{
-    httpOnly: false, // Prevents access from client-side JS
-    secure: false, // Use secure cookies in production
-    sameSite: 'lax' // CSRF protection
-  });
   res.json({ message: 'Logout successful' });
 };
