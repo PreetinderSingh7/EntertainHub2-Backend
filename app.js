@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'https://entertain-hub2.vercel.app/', // Your frontend dev server
+    origin: 'https://entertain-hub2.vercel.app', // Your frontend dev server
     credentials: true,
   })
 );
