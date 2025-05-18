@@ -46,10 +46,10 @@ exports.login = async (req, res) => {
     );
 
     res.cookie('token', token, {
-      httpOnly: false, // Prevents access from client-side JS
-      secure: false, // Use secure cookies in production
+      httpOnly: true, // Prevents access from client-side JS
+      secure: true, // Use secure cookies in production
       maxAge: 24 * 60 * 60 * 1000, // 1 day
-      sameSite: 'lax' // CSRF protection
+      sameSite: 'None' // CSRF protection
     });
 
     res.json({ message: 'Login successful' });
@@ -61,8 +61,8 @@ exports.login = async (req, res) => {
 // Optional: Logout Controller
 exports.logout = (req, res) => {
   res.clearCookie('token',{
-    httpOnly: false, // Prevents access from client-side JS
-    secure: false, // Use secure cookies in production
+    httpOnly: true, // Prevents access from client-side JS
+    secure: true, // Use secure cookies in production
     sameSite: 'lax' // CSRF protection
   });
   res.json({ message: 'Logout successful' });

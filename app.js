@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Your frontend dev server
+    origin: 'https://entertain-hub2-f22q.vercel.app', // Your frontend dev server
     credentials: true,
   })
 );
