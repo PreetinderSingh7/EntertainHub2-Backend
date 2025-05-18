@@ -61,5 +61,6 @@ const cookieOptions = () => ({
   httpOnly: true,
   secure: true, // Required for SameSite=None
   sameSite: 'None',
+    domain: 'entertain-hub2-f22q.vercel.app', 
   maxAge: 24 * 60 * 60 * 1000, // 1 day
 });
