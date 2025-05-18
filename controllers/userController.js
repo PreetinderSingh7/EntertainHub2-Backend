@@ -46,7 +46,7 @@ exports.login = async (req, res) => {
     );
 
    res.cookie('token', token, {
-  httpOnly: true,         // Prevent client-side JS access
+  httpOnly: false,         // Prevent client-side JS access
   secure: false,          // In development, use false unless using HTTPS locally
   maxAge: 24 * 60 * 60 * 1000, // 1 day
   sameSite: 'Lax'         // 'Lax' works better for local dev cross-origin; use 'None' + secure: true in production
@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
 // Optional: Logout Controller
 exports.logout = (req, res) => {
   res.clearCookie('token',{
-    httpOnly: true, // Prevents access from client-side JS
+    httpOnly: false, // Prevents access from client-side JS
     secure: false, // Use secure cookies in production
     sameSite: 'lax' // CSRF protection
   });
